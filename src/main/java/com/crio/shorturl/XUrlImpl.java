@@ -14,7 +14,15 @@ public class XUrlImpl implements XUrl {
         this.longToShortUrlMap = new HashMap<>();
         this.longUrlHitCountMap = new HashMap<>();
     }
-
+    private String generateShortUrl() {
+      String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < SHORT_URL_LENGTH; i++) {
+          int index = (int) (Math.random() * chars.length());
+          sb.append(chars.charAt(index));
+      }
+      return BASE_SHORT_URL + sb.toString();
+    }
     @Override
     public String registerNewUrl(String longUrl) {
         if (longToShortUrlMap.containsKey(longUrl)) {
@@ -32,7 +40,7 @@ public class XUrlImpl implements XUrl {
     public String registerNewUrl(String longUrl, String shortUrl) {
         if (longToShortUrlMap.containsValue(shortUrl)) {
             return null;
-        }
+        }           
         
         longToShortUrlMap.put(longUrl, shortUrl);
         longUrlHitCountMap.put(longUrl, 0);
@@ -71,15 +79,5 @@ public class XUrlImpl implements XUrl {
     @Override
     public Integer getHitCount(String longUrl) {
         return longUrlHitCountMap.getOrDefault(longUrl, 0);
-    }
-    
-    private String generateShortUrl() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < SHORT_URL_LENGTH; i++) {
-            int index = (int) (Math.random() * chars.length());
-            sb.append(chars.charAt(index));
-        }
-        return BASE_SHORT_URL + sb.toString();
     }
 }

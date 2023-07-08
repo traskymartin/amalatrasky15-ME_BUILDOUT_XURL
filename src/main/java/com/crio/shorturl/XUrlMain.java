@@ -31,7 +31,7 @@ public  class XUrlMain {
     System.out.println(url6);
     System.out.println(urlNull);
 
-    /*// Test out longURL lookup based on the shortURL input
+    // Test out longURL lookup based on the shortURL input
     assert(xUrl.getUrl(url).equals("http://abc.com"));
     assert(xUrl.getUrl(url2).equals(xUrl.getUrl(url4)));
     assert(xUrl.getUrl(url5).equals("http://abc5.com"));
@@ -50,7 +50,7 @@ public  class XUrlMain {
 
     // Delete mapping for the long URL and confirm that the short URL lookup for that long URL returns null
     xUrl.delete("http://abc6.com");
-    assert(xUrl.getUrl(url6) == null);*/
+    assert(xUrl.getUrl(url6) == null);
   }
 }
 
